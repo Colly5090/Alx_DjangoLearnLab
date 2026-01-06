@@ -5,7 +5,7 @@ This document demonstrates how to delete a `Book` record using the Django ORM.
 ## Retrieve the Book
 
 ```python
-from books.models import Book
+from bookshelf.models import Book
 
 book = Book.objects.get(title="Nineteen Eighty-Four")
 
