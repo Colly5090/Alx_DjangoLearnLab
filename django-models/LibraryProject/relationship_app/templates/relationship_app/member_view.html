@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Member Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, Member!</h1>
+    <p>You can browse books and view your library account.</p>
+
+    <h2>Book List</h2>
+    <ul>
+    {% for book in books %}
+        <li>
+            {{ book.title }} by {{ book.author.name }}
+            
+            {% if perms.relationship_app.can_change_book %}
+                <a href="{% url 'book-edit' book.pk %}">Edit</a>
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>No books available.</li>
+    {% endfor %}
+    </ul>
+
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>

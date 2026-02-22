@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Librarian Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, Librarian!</h1>
+    <p>You can manage books and help members in the library.</p>
+    {% if perms.relationship_app.can_add_book %}
+        <a href="{% url 'book-add' %}">Add Book</a><br>
+    {% endif %}
+
+    {% if perms.relationship_app.can_change_book %}
+    <ul>
+    {% for book in books %}
+        <li>
+            {{ book.title }}  =by=  {{ book.author.name }}
+            <a href="{% url 'book-edit' book.pk %}">Edit</a>
+        </li>
+    {% endfor %}
+        </ul>
+    {% endif %}
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>
